@@ -1,0 +1,41 @@
+<!-- signup_owner.html
+     Owner Signup Page
+     Punjabi comments
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Owner Sign Up</title>
+  <style>
+    body{font-family:Arial;background:#fffaf0}
+    .box{width:420px;margin:60px auto;background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+    input{width:100%;padding:10px;margin-top:10px;border-radius:6px;border:1px solid #ccc}
+    .btn{width:100%;padding:12px;background:#ff7f50;color:#fff;border:none;border-radius:8px;margin-top:12px;cursor:pointer}
+  </style>
+  <script>
+    function vOwner(){
+      if(document.getElementById('name').value.trim()===''||
+         document.getElementById('email').value.trim()===''||
+         document.getElementById('pass').value.trim()===''){
+        alert('Name, Email te Password bharna zaroori ne.');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <div class="box">
+    <h2>Owner Sign Up</h2>
+    <form method="POST" action="/signup_owner" onsubmit="return vOwner()">
+      <input id="name" name="name" placeholder="پورا ناں">
+      <input id="email" name="email" type="email" placeholder="Email">
+      <input id="pass" name="password" type="password" placeholder="Password">
+      <input name="phone" placeholder="Phone (اختیاری)">
+      <button class="btn" type="submit">Create Owner Account</button>
+    </form>
+    <p style="margin-top:10px;color:#666"><a href="/login_owner">Owner Login</a></p>
+  </div>
+</body>
+</html>

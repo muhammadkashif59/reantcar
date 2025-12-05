@@ -1,0 +1,83 @@
+<!--
+
+Rent A Car Website - Home Page
+ 
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rent A Car - Home</title>
+
+    <style>
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: wheat;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            color: darkgrey;
+            margin-bottom: 50px;
+            animation: car 5s ease-in-out 0s infinite; 
+        }
+        @keyframes car {
+            from{transform: translateX(800px); }
+            to{transform: translateX(-900px) ;}
+            
+        }
+
+        .box {
+            background: wheat;
+            width: 350px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0px 0px 10px burlywood;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background: yellowgreen;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: darkblue;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <h1>kashif Rent A Car Welcome</h1>
+
+    <div class="box">
+        <!-- Button – User Login -->
+        <button class="btn"
+            onclick="window.location.href='/login_user'">
+            User Login
+        </button>
+
+        <!-- Button – Owner Login -->
+        <button class="btn"
+            onclick="window.location.href='/login_owner'">
+            Owner Login
+        </button>
+    </div>
+
+</body>
+</html>

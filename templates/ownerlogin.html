@@ -1,0 +1,94 @@
+<!--
+-----------------------------------------
+Owner Login Page – Punjabi Comments
+-----------------------------------------
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owner Login</title>
+
+    <style>
+        body {
+            background: #f8e9e9;
+            font-family: Arial;
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        .login-box {
+            width: 350px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px #c99;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 7px;
+            border: 1px solid #bbb;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #d9534f;
+            color: white;
+            margin-top: 15px;
+            border-radius: 7px;
+            font-size: 17px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #b52b27;
+        }
+
+        .link {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        function checkOwner() {
+            let e = document.getElementById("email").value;
+            let p = document.getElementById("pass").value;
+
+            if (e === "" || p === "") {
+                alert("⚠ Owner Email ते Password ज़रूरी ने!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Owner Login</h2>
+
+        <form method="POST" onsubmit="return checkOwner()">
+
+            <input type="email" name="email" id="email" placeholder="Email">
+
+            <input type="password" name="password" id="pass" placeholder="Password">
+
+            <button class="btn" type="submit">Login</button>
+
+            <div class="link">
+                <a href="/signup_owner">Create Owner Account</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    body{background-color: darkcyan;}
+    h2{text-transform: uppercase;
+    font-weight: bold;text-align: center;
+  margin: 20px;}
+  .kashi{width: 1300px;
+  height: 400px;
+border: 2px solid green;}
+  </style>
+  <h2>Available Cars</h2><div class="kashif"><p>welcome kashif rent a car offer 1111</p></div>
+
+<div style="display:flex;flex-wrap:wrap;gap:15px">
+  {% for c in cars %}
+    <div style="width:230px;padding:10px;border:1px solid white;border-radius:8px;background:white">
+      <img src="/static/car_images/{{ c['image'] }}" style="width:100%;height:150px;object-fit:cover;border-radius:6px">
+
+      <h3>{{ c['car_name'] }} ({{ c['model'] }})</h3>
+      <p>Rs {{ c['price'] }} / day</p>
+
+      <a href="/car/{{ c['car_id'] }}">
+        <button style="width:100%;padding:10px;background:green;color:white;border:none;border-radius:6px">
+          View Details
+        </button>
+      </a>
+    </div>
+  {% endfor %}
+  <a href="/logout"><button>logout</button></a>
+</div>
+</body>
+</html>

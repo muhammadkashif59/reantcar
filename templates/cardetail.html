@@ -1,0 +1,78 @@
+<!-- car_details.html
+     Car single detail page
+     Expects 'car' variable from Flask
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Car Details</title>
+  <style>
+    body{
+      font-family:Arial;
+      background-color: darkcyan;
+    }
+    .wrap{
+      max-width:900px;
+      margin:30px auto;
+      padding:18px
+    }
+    .top{
+      display:flex;
+      gap:18px
+    }
+    img{
+      width:360px;
+      height:230px;
+      object-fit:cover;
+      border-radius:10px
+    }
+    .info h2{
+      margin:0
+    }
+    .price{
+      color:#d63384;
+      font-weight:700;
+      margin-top:8px
+    }
+    .btn {
+      display:inline-block;
+      padding:10px 14px;
+      background:#0d6efd;
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      margin-top:12px
+    }
+   p>a{
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      width:100px ;
+      height: 50px;
+      font-weight: bold;
+      
+    }
+    #bt{
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <img src="{{ url_for('static', filename='car_images/' + car['image']) }}" alt="car">
+      <div class="info">
+        <h2>{{ car['car_name'] }} — {{ car['model'] }}</h2>
+        <p>{{ car['description'] }}</p>
+        <p class="price">Rs {{ car['price'] }} / day</p>
+
+        <!-- Rent button -->
+        <a class="btn" href="/rent/{{ car['car_id'] }}">Book Now</a>
+      </div>
+    </div>
+
+    <button id="bt"><p style="margin-top:18px"><a href="/view_cars">Back to Cars</a></p></button>
+  </div>
+</body>
+</html>

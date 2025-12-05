@@ -1,0 +1,44 @@
+<!-- my_cars.html
+     Owner's own cars list
+     Expects 'cars' variable from Flask (owner's cars)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Cars</title>
+  <style>
+    body{font-family:Arial;background:#fff}
+    .wrap{max-width:980px;margin:24px auto}
+    .card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04);display:flex;gap:12px;align-items:center;margin-bottom:12px}
+    img{width:140px;height:85px;object-fit:cover;border-radius:8px}
+    .btn{padding:8px 10px;background:#0d6efd;color:#fff;border-radius:8px;text-decoration:none}
+    .del{background:#dc3545}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>My Cars</h2>
+
+    {% if cars %}
+      {% for car in cars %}
+        <div class="card">
+          <img src="{{ url_for('static', filename='car_images/' + car['image']) }}" alt="car">
+          <div>
+            <h4>{{ car['car_name'] }} — {{ car['model'] }}</h4>
+            <p>Rs {{ car['price'] }} / day</p>
+          </div>
+          <div style="margin-left:auto">
+            <a class="btn" href="/edit_car/{{ car['car_id'] }}">Edit</a>
+            <a class="btn del" href="/delete_car/{{ car['car_id'] }}" style="margin-left:8px">Delete</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No cars uploaded yet. <a href="/add_car">Add Car</a></p>
+    {% endif %}
+
+    <p style="margin-top:12px"><a href="/owner_home">Back to Dashboard</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!--
+-----------------------------------------
+User Login Page – 
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+
+    <style>
+        body {
+            background: #e6eef7;
+            font-family: Arial;
+            padding-top: 100px;
+            text-align: center;
+            background-color: darkcyan;
+        }
+
+        .login-box {
+            width: 350px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px white;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: 1px solid #aaa;
+            border-radius: 7px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            margin-top: 15px;
+            border-radius: 7px;
+            font-size: 17px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #1e7e34;
+        }
+
+        .link {
+            margin-top: 10px;
+        }
+    </style>
+
+    <script>
+        // ---------------------------------------------
+        // Simple JS Form Validation - Punjabi Comments
+        // ---------------------------------------------
+        function checkForm() {
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+
+            if (email === "" || pass === "") {
+                alert("⚠ Email  Password !");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>User Login</h2>
+
+        <!-- Form submit Flask route /login_user -->
+        <form method="POST" onsubmit="return checkForm()">
+
+            <input type="email" name="email" id="email" placeholder="Email">
+
+            <input type="password" name="password" id="pass" placeholder="Password">
+
+            <button class="btn" type="submit">Login</button>
+
+            <div class="link">
+                <a href="/signup_user">Create Account</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

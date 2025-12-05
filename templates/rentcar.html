@@ -1,0 +1,123 @@
+<!-- rent_car.html Updated Version
+     Booking form + KM Billing + Location + Maps
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rent Car</title>a  
+
+  <style>
+    body{font-family:Arial;background:darkcyan;}
+    .box{max-width:520px;margin:36px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    input, select{width:100%;padding:10px;margin-top:10px;border-radius:6px;border:1px solid #ccc}
+    .btn{width:100%;padding:12px;background:#198754;color: black;font-weight: bold;
+      text-transform:uppercase;border:none;border-radius:8px;margin-top:12px}
+    .bill-box{padding:10px;background:yellowgreen;margin-top:10px;border-radius:6px;font-weight:bold}
+  </style>
+
+  <script>
+    function validateBook(){
+      let from=document.getElementById('from').value;
+      let to=document.getElementById('to').value;
+
+      if(!from||!to){ 
+        alert('date lazmi'); 
+        return false; 
+      }
+
+      if(new Date(to) < new Date(from)){ 
+        alert('Drop date pickup to zyada honi chahi di'); 
+        return false; 
+      }
+
+      return true;
+    }
+
+    function calcBill(){
+      let price = Number(document.getElementById("carPrice").value);   // Price per day
+      let km = Number(document.getElementById("km").value);            // KM value
+      let driver = document.getElementById("driver").value;            // Driver yes/no
+      let from = document.getElementById("from").value;
+      let to = document.getElementById("to").value;
+
+      let billText = document.getElementById("billText");
+
+      if(!from || !to){
+        billText.innerHTML = " Pehlan Dates Select karo";
+        return;
+      }
+
+      let days = (new Date(to) - new Date(from)) / (1000 * 60 * 60 * 24);
+      if(days < 1) days = 1;
+
+      let kmCharges = km * 50;
+      let dayCharges = days * price;
+
+      let driverCharges = (driver === "yes") ? days * 1000 : 0;
+
+      let total = kmCharges + dayCharges + driverCharges;
+
+      billText.innerHTML = `
+          Days: ${days} <br>
+          KM Charges: Rs ${kmCharges} <br>
+          Driver Charges: Rs ${driverCharges} <br><br>
+          <b>Total Bill: Rs ${total}</b>
+      `;
+    }
+
+    function openMaps(){
+      let loc = document.getElementById("location").value;
+      if(loc === ""){
+        alert("Location dy apni");
+        return;
+      }
+      window.open("https://www.google.com/maps/search/" + loc);
+    }
+  </script>
+
+</head>
+
+<body>
+
+<div class="box">
+  <h3>Book: {{ car['car_name'] }} — {{ car['model'] }}</h3>
+  <p>Price: Rs {{ car['price'] }} / day</p>
+
+  <input type="hidden" id="carPrice" value="{{ car['price'] }}">
+
+  <form method="POST" action="/rent/{{ car['car_id'] }}" onsubmit="return validateBook()">
+
+    <label>Pickup Location</label>
+    <input type="text" id="location" name="location" placeholder="Jithon pickup krwana ae">
+    <button type="button" class="btn" style="background:#0d6efd" onclick="openMaps()">Open in Maps</button>
+
+    <label>Pickup Date</label>
+    <input type="date" id="from" name="date_from" onchange="calcBill()">
+
+    <label>Drop Date</label>
+    <input type="date" id="to" name="date_to" onchange="calcBill()">
+
+    <label>Total KM (Estimate)</label>
+    <input type="number" id="km" name="km" placeholder="Jitna km travel krna ha" onkeyup="calcBill()">
+
+    <label>Need Driver?</label>
+    <select name="driver" id="driver" onchange="calcBill()">
+      <option value="no">No</option>
+      <option value="yes">Yes (+Rs 1000/day)</option>
+    </select>
+
+    <div class="bill-box" id="billText">
+       Total Bill 
+    </div>
+
+    <button class="btn" type="submit">Confirm Booking</button>
+  </form>
+
+  <p style="margin-top:12px"><a href="/car/{{ car['car_id'] }}">Back to Details</a></p>
+
+</div>
+
+</body>
+</html>
